@@ -22,6 +22,6 @@ namespace Upd8.Application.Services
 
         public void UpdateCustomer(Customer customer) => customerRepository.Update(customer);
 
-        public void RemoveCustomer(Customer customer) => customerRepository.Remove(customer);
+        public void RemoveCustomer(Guid id) => customerRepository.Remove(id);
     }
 }

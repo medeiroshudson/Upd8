@@ -9,6 +9,6 @@ namespace Upd8.Domain.Interfaces.Repositories
 		Customer? GetById(Guid id);
 		void Add(Customer customer);
 		void Update(Customer customer);
-		void Remove(Customer customer);
+		void Remove(Guid id);
 	}
 }

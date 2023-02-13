@@ -9,6 +9,6 @@ namespace Upd8.Domain.Interfaces.Services
 		Customer? GetCustomerById(Guid id);
 		void AddCustomer(Customer customer);
 		void UpdateCustomer(Customer customer);
-		void RemoveCustomer(Customer customer);
+		void RemoveCustomer(Guid id);
 	}
 }

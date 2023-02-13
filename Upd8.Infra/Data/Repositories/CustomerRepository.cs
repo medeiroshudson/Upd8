@@ -31,10 +31,15 @@ namespace Upd8.Infra.Data.Repositories
             }
         }
 
-        public void Remove(Customer customer)
+        public void Remove(Guid id)
         {
             try
             {
+                var customer = GetById(id);
+
+                if (customer == null)
+                    return;
+
                 dbContext.Customer.Remove(customer);
                 dbContext.SaveChanges();
             }
