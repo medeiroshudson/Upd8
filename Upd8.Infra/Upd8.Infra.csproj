@@ -8,19 +8,24 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Upd8.Domain\Upd8.Domain.csproj" />
+    <ProjectReference Include="..\Upd8.Application\Upd8.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Data\" />
     <None Remove="CrossCutting\" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Data\Repositories\" />
+    <None Remove="Autofac" />
+    <None Remove="CrossCutting\IOC\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="CrossCutting\" />
     <Folder Include="Data\Repositories\" />
+    <Folder Include="CrossCutting\IOC\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Autofac" Version="6.5.0" />
   </ItemGroup>
 </Project>

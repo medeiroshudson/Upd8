@@ -8,6 +8,19 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Extensions\" />
+    <None Remove="Autofac.Extensions.DependencyInjection" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Upd8.Infra\Upd8.Infra.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
