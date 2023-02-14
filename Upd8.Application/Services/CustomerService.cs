@@ -14,7 +14,7 @@ namespace Upd8.Application.Services
             this.customerRepository = customerRepository;
 		}
 
-        public void AddCustomer(Customer customer) => customerRepository.Add(customer);
+        public Customer AddCustomer(Customer customer) => customerRepository.Add(customer);
 
         public IEnumerable<Customer> GetAllCustomers() => customerRepository.GetAll();
 

@@ -7,7 +7,7 @@ namespace Upd8.Domain.Interfaces.Repositories
 	{
 		IEnumerable<Customer> GetAll();
 		Customer? GetById(Guid id);
-		void Add(Customer customer);
+        Customer Add(Customer customer);
 		void Update(Customer customer);
 		void Remove(Guid id);
 	}

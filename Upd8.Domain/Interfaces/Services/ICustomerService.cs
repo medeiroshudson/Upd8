@@ -7,7 +7,7 @@ namespace Upd8.Domain.Interfaces.Services
 	{
 		IEnumerable<Customer> GetAllCustomers();
 		Customer? GetCustomerById(Guid id);
-		void AddCustomer(Customer customer);
+        Customer AddCustomer(Customer customer);
 		void UpdateCustomer(Customer customer);
 		void RemoveCustomer(Guid id);
 	}

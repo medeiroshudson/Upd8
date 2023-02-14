@@ -18,12 +18,14 @@ namespace Upd8.Infra.Data.Repositories
 
         public Customer? GetById(Guid id) => dbContext.Customer.Find(id);
 
-        public void Add(Customer customer)
+        public Customer Add(Customer customer)
         {
             try
             {
-                dbContext.Customer.Add(customer);
+                var created = dbContext.Customer.Add(customer);
                 dbContext.SaveChanges();
+
+                return created.Entity;
             }
             catch (Exception)
             {

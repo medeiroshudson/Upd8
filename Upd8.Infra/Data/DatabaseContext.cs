@@ -40,6 +40,7 @@ namespace Upd8.Infra.Data
 				{
                     entry.State = EntityState.Modified;
                     ((Entity)entry.Entity).Deleted = true;
+                    ((Entity)entry.Entity).UpdatedAt = DateTime.Now;
                 }
 			}
 		}
@@ -57,10 +58,8 @@ namespace Upd8.Infra.Data
                 {
 					((Entity)entry.Entity).CreatedAt = DateTime.Now;
                 }
-                else
-                {
-                    ((Entity)entry.Entity).UpdatedAt = DateTime.Now;
-                }
+
+                ((Entity)entry.Entity).UpdatedAt = DateTime.Now;
             }
         }
     }

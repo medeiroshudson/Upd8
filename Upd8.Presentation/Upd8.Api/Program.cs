@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // -- Autofac/IoC --
 builder.AddAutofacModule();
+builder.AddApplicationDatabase();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
