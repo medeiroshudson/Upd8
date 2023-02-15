@@ -6,6 +6,8 @@ BEGIN
 	CREATE DATABASE Upd8;
 END
 
+GO
+
 USE Upd8;
 GO
 

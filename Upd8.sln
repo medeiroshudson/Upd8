@@ -1,23 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1704.2
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upd8.Domain", "Upd8.Domain\Upd8.Domain.csproj", "{9586B87F-A5DD-4A05-8C42-6BA42340264D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upd8.Domain", "Upd8.Domain\Upd8.Domain.csproj", "{9586B87F-A5DD-4A05-8C42-6BA42340264D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upd8.Infra", "Upd8.Infra\Upd8.Infra.csproj", "{B9CCADBC-F233-4AC9-A4D7-C59C1328A17F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upd8.Infra", "Upd8.Infra\Upd8.Infra.csproj", "{B9CCADBC-F233-4AC9-A4D7-C59C1328A17F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Upd8.Presentation", "Upd8.Presentation", "{CC414D91-7E9C-497A-9D4A-C323FB469457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upd8.Api", "Upd8.Presentation\Upd8.Api\Upd8.Api.csproj", "{BF591ECE-3D9F-4075-8677-68C4819CA04A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upd8.Api", "Upd8.Presentation\Upd8.Api\Upd8.Api.csproj", "{BF591ECE-3D9F-4075-8677-68C4819CA04A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upd8.Application", "Upd8.Application\Upd8.Application.csproj", "{8E6FF60E-6FE0-4F49-B52B-87DB5418A523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upd8.Application", "Upd8.Application\Upd8.Application.csproj", "{8E6FF60E-6FE0-4F49-B52B-87DB5418A523}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9DC5554-F685-4885-B9BC-316F2F43A66F}"
 	ProjectSection(SolutionItems) = preProject
-		readme.md = readme.md
 		InitializeDatabase.sql = InitializeDatabase.sql
+		readme.md = readme.md
 	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D8B552CF-F05F-4D27-9654-1AF2C58853D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,14 +43,18 @@ Global
 		{8E6FF60E-6FE0-4F49-B52B-87DB5418A523}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E6FF60E-6FE0-4F49-B52B-87DB5418A523}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E6FF60E-6FE0-4F49-B52B-87DB5418A523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B552CF-F05F-4D27-9654-1AF2C58853D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B552CF-F05F-4D27-9654-1AF2C58853D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B552CF-F05F-4D27-9654-1AF2C58853D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B552CF-F05F-4D27-9654-1AF2C58853D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {65992C4E-2904-4EEF-91E1-E26CF9B8844F}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BF591ECE-3D9F-4075-8677-68C4819CA04A} = {CC414D91-7E9C-497A-9D4A-C323FB469457}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65992C4E-2904-4EEF-91E1-E26CF9B8844F}
 	EndGlobalSection
 EndGlobal

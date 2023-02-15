@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/azure-sql-edge
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pa55w0rd123"
+    ports:
+      - "1433:1433"
+
+  mssql-tools:
+   image: mcr.microsoft.com/mssql-tools
+   depends_on: 
+     - mssql
+   volumes:
+     - ./InitializeDatabase.sql:/tmp/InitializeDatabase.sql
+   command: /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P Pa55w0rd123 -d master -i /tmp/InitializeDatabase.sql
+
+  upd8.api:
+    image: ${DOCKER_REGISTRY-}upd8api
+    build:
+      context: .
+      dockerfile: Upd8.Presentation/Upd8.Api/Dockerfile
