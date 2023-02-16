@@ -12,7 +12,7 @@ namespace Upd8.Infra.Data
 
         public DbSet<Customer> Customer { get; set; } = null!;
 
-        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        public override int SaveChanges()
         {
             var entries = ChangeTracker.Entries()
                 .Where(x => x.Entity is Entity)
@@ -20,10 +20,43 @@ namespace Upd8.Infra.Data
 
             UpdateTimestamps(entries);
             ConfigureSoftDelete(entries);
+            UpdateOnlyDirtyProperties(entries);
 
-            return base.SaveChanges(acceptAllChangesOnSuccess);
+            return base.SaveChanges();
         }
 
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            var entries = ChangeTracker.Entries()
+                .Where(x => x.Entity is Entity)
+                .ToList();
+
+            UpdateTimestamps(entries);
+            ConfigureSoftDelete(entries);
+            UpdateOnlyDirtyProperties(entries);
+
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        // function for do not apply update on 'null' values
+        private static void UpdateOnlyDirtyProperties(List<EntityEntry> entries)
+        {
+            var filteredEntities = entries.Where(x =>
+                    x.State == EntityState.Modified
+                );
+
+            foreach (var entry in filteredEntities)
+            {
+                var type = ((Entity)entry.Entity).GetType();
+                foreach(var prop in type.GetProperties())
+                {
+                    if (prop.GetValue(entry.Entity, null) == null)
+                        entry.Property(prop.Name).IsModified = false;
+                }
+            }
+        }
+
+        // function for use delete operations for update 'deleted' property only
         private static void ConfigureSoftDelete(List<EntityEntry> entries)
         {
             var filteredEntities = entries.Where(x =>
@@ -46,6 +79,7 @@ namespace Upd8.Infra.Data
             }
         }
 
+        // function for automatically write 'CreatedAt' and 'UpdatedAt' fields
         private static void UpdateTimestamps(List<EntityEntry> entries)
         {
             var filteredEntities = entries.Where(x =>

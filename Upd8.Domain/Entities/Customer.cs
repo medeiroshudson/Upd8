@@ -1,9 +1,8 @@
-﻿using System;
-using Upd8.Domain.Core.Entities;
+﻿using Upd8.Domain.Core.Entities;
 
 namespace Upd8.Domain.Entities
 {
-	public class Customer : Entity
+    public class Customer : Entity
 	{
 		public Customer(
             Guid id, string name, string document, DateTime birthDate,

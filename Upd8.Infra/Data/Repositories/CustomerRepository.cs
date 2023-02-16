@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Upd8.Domain.Entities;
+﻿using Upd8.Domain.Entities;
 using Upd8.Domain.Interfaces.Repositories;
 
 namespace Upd8.Infra.Data.Repositories
 {
-	public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : ICustomerRepository
 	{
 		private readonly DatabaseContext dbContext;
 
@@ -55,7 +53,7 @@ namespace Upd8.Infra.Data.Repositories
         {
             try
             {
-                dbContext.Entry(customer).State = EntityState.Modified;
+                dbContext.Customer.Update(customer);
                 dbContext.SaveChanges();
             }
             catch (Exception)
