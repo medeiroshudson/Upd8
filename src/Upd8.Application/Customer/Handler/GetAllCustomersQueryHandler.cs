@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Upd8.Application.Customer.Handler;
 
-public class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomersQuery, List<Domain.Customer.Customer>>
+public sealed class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomersQuery, List<Domain.Customer.Customer>>
 {
     private readonly DatabaseContext _databaseContext;
     public GetAllCustomersQueryHandler(DatabaseContext databaseContext)

@@ -19,8 +19,19 @@ public class CustomerController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var response = await _mediator.Send(new GetAllCustomersQuery());
-        return Ok(response);
+        var query = new GetAllCustomersQuery();
+        var customers = await _mediator.Send(query);
+
+        return Ok(customers);
+    }
+
+    [HttpGet("{CustomerId}")]
+    public async Task<IActionResult> FindById(Guid customerId)
+    {
+        var query = new GetCustomerByIdQuery(customerId);
+        var customer = await _mediator.Send(query);
+
+        return Ok(customer);
     }
 
     [HttpPost]
