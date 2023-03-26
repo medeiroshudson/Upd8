@@ -2,10 +2,11 @@ using Upd8.Application;
 using Upd8.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddInfra();
 builder.Services.AddApplication();
+builder.Services.AddInfra(configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
