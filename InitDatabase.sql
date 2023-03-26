@@ -17,6 +17,7 @@ GO IF NOT EXISTS(
         [Document] NVARCHAR(14),
         [BirthDate] DATETIME2,
         [Gender] NVARCHAR(1),
+        [StreetName] NVARCHAR(60),
         [City] NVARCHAR(60),
         [State] NVARCHAR(2),
         [Country] NVARCHAR(20),
