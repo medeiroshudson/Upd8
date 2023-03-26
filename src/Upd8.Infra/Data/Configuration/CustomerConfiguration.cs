@@ -1,4 +1,4 @@
-using Upd8.Domain.Customer;
+using Upd8.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

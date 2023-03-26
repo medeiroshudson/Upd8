@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Upd8.Application.Customer.Command;
 using Upd8.Application.Customer.Query;
-using Upd8.Domain.Customer;
+using Upd8.Domain.Entities;
 
 namespace Upd8.Api.Controllers;
 
@@ -40,6 +40,6 @@ public class CustomerController : ControllerBase
         var command = new CreateCustomerCommand() { Customer = customer };
         var result = await _mediator.Send(command);
 
-        return Ok(result);
+        return CreatedAtAction(nameof(Create), result);
     }
 }

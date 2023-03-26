@@ -4,7 +4,7 @@ using Upd8.Infra.Data;
 
 namespace Upd8.Application.Customer.Handler;
 
-public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Domain.Customer.Customer>
+public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Domain.Entities.Customer>
 {
     private readonly DatabaseContext _databaseContext;
     public CreateCustomerCommandHandler(DatabaseContext databaseContext)
@@ -12,7 +12,7 @@ public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustome
         _databaseContext = databaseContext;
     }
 
-    public async Task<Domain.Customer.Customer> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+    public async Task<Domain.Entities.Customer> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
         await _databaseContext.Customer.AddAsync(request.Customer, cancellationToken);
         await _databaseContext.SaveChangesAsync(cancellationToken);

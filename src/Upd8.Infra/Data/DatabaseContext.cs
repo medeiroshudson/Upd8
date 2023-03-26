@@ -1,5 +1,5 @@
 using System.Reflection;
-using Upd8.Domain.Customer;
+using Upd8.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Upd8.Infra.Data;

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Upd8.Application.Customer.Handler;
 
-public sealed class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomersQuery, List<Domain.Customer.Customer>>
+public sealed class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomersQuery, List<Domain.Entities.Customer>>
 {
     private readonly DatabaseContext _databaseContext;
     public GetAllCustomersQueryHandler(DatabaseContext databaseContext)
@@ -13,7 +13,7 @@ public sealed class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustomer
         _databaseContext = databaseContext;
     }
 
-    public async Task<List<Domain.Customer.Customer>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
+    public async Task<List<Domain.Entities.Customer>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
     {
         return await _databaseContext.Customer.ToListAsync(cancellationToken);
     }

@@ -1,6 +1,6 @@
 using Upd8.Domain.Commons;
 
-namespace Upd8.Domain.Customer;
+namespace Upd8.Domain.Entities;
 
 public class Customer : BaseEntity
 {
