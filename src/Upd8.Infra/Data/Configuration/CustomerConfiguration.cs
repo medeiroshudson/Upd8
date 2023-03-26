@@ -11,6 +11,10 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.ToTable("Customer");
 
         builder.HasKey(customer => customer.Id);
+        builder.Property(customer => customer.Name);
+        builder.Property(customer => customer.Document);
+        builder.Property(customer => customer.BirthDate);
+        builder.Property(customer => customer.Gender).HasConversion<string>();
 
         builder.OwnsOne(customer => customer.Address, addressBuilder =>
         {

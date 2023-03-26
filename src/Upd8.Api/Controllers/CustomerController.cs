@@ -35,9 +35,9 @@ public class CustomerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Customer customer)
+    public async Task<IActionResult> Create([FromBody] CreateCustomerCommand command)
     {
-        var command = new CreateCustomerCommand() { Customer = customer };
+        // var command = new CreateCustomerCommand();
         var result = await _mediator.Send(command);
 
         return CreatedAtAction(nameof(Create), result);

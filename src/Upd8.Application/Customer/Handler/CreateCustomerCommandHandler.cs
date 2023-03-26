@@ -14,9 +14,11 @@ public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustome
 
     public async Task<Domain.Entities.Customer> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
-        await _databaseContext.Customer.AddAsync(request.Customer, cancellationToken);
+        var customer = Domain.Entities.Customer.Create(request.Name, request.Document, request.BirthDate, request.Gender, request.Address);
+
+        await _databaseContext.Customer.AddAsync(customer, cancellationToken);
         await _databaseContext.SaveChangesAsync(cancellationToken);
 
-        return request.Customer;
+        return customer;
     }
 }
