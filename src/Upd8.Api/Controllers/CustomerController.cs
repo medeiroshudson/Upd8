@@ -35,11 +35,29 @@ public class CustomerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateCustomerCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateCustomerCommand request)
     {
-        // var command = new CreateCustomerCommand();
+        var command = new CreateCustomerCommand(
+            request.Name, request.Document, request.BirthDate, request.Gender, request.Address
+        );
+
         var result = await _mediator.Send(command);
 
         return CreatedAtAction(nameof(Create), result);
+    }
+
+    [HttpPut("{CustomerId}")]
+    public async Task<IActionResult> Update([FromRoute] Guid customerId, [FromBody] UpdateCustomerCommand request)
+    {
+        if (customerId != request.Id)
+            return UnprocessableEntity();
+
+        var command = new UpdateCustomerCommand(
+            customerId, request.Name, request.Document, request.BirthDate, request.Gender, request.Address
+        );
+
+        var result = await _mediator.Send(command);
+
+        return AcceptedAtAction(nameof(Update), result);
     }
 }
