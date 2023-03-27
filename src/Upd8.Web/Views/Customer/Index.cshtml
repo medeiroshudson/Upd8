@@ -1,0 +1,104 @@
+@{
+    @model List<CustomerViewModel>
+    ViewData["Title"] = "Clientes";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#tblCustomers').DataTable();
+
+            $(".btnEditCustomerModal").click(function() {
+                const customerId = $(this).data('id');
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Customer/Edit",
+                    data: { "customerId": customerId },
+                    success: function(response) {
+                        $("#renderModalArea").html(response);
+
+                        var modalId = $("#renderModalArea").children().attr('id')
+                        var modal = new bootstrap.Modal(document.getElementById(modalId))
+
+                        modal.toggle();
+                    },
+                    error: function(error) {
+                        console.error(error)
+                    }
+                });
+            })
+
+            $(".btnDeleteCustomer").click(function() {
+                const customerId = $(this).data('id');
+
+                $.ajax({
+                    type: "DELETE",
+                    url: "/Customer/Delete",
+                    data: { "customerId": customerId },
+                    success: function() {
+                        window.location.reload();
+                    },
+                    error: function(error) {
+                        console.error(error)
+                    }
+                })
+            });
+         });
+    </script>
+}
+
+<div class="text-center">
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+      </ol>
+    </nav>
+
+    <h1 class="display-4 pb-5">Gerenciamento de Clientes</h1>
+
+    @if(Model.Count > 0) {
+        <table id="tblCustomers" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Document)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().BirthDate)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Address.State)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Address.City)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Gender)</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td scope="row">@customer.Name</td>
+                        <td scope="row">@customer.Document</td>
+                        <td scope="row">@Html.DisplayFor(model => customer.BirthDate)</td>
+                        <td scope="row">@customer.Address?.State</td>
+                        <td scope="row">@customer.Address?.City</td>
+                        <td scope="row">@customer.Gender</td>
+                        <td scope="row">
+                            <a class="btn btn-secondary" asp-action="Details" asp-route-id="@customer.Id">
+                                <i class="bi bi-eye"></i>
+                            </a>
+
+                            <button type="button" class="btn btn-primary btnEditCustomerModal" data-id="@customer.Id">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-danger btnDeleteCustomer" data-id="@customer.Id">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div id="renderModalArea"></div>
+</div>

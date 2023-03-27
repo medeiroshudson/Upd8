@@ -1,0 +1,69 @@
+@model CustomerViewModel
+
+<div class="modal fade" id="editCustomerModal" tabindex="-1" aria-labelledby="editCustomerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCustomerModalLabel">Detalhes de @Model.Name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form asp-action="Update" method="post">
+        <div class="modal-body">
+          <input asp-for="Id" hidden />
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-7">
+                <label asp-for="Name" class="form-label pt-2">@Html.DisplayNameFor(x => x.Name)</label>
+                <input asp-for="Name" class="form-control" />
+              </div>
+              <div class="col-md-5">
+                <label asp-for="Document" class="form-label pt-2">@Html.DisplayNameFor(x => x.Document)</label>
+                <input asp-for="Document" class="form-control" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label asp-for="BirthDate" class="form-label pt-2">@Html.DisplayNameFor(x => x.BirthDate)</label>
+                <input asp-for="BirthDate" type="date" class="form-control" />
+              </div>
+              <div class="col-md-6">
+                <label asp-for="Gender" class="form-label pt-2">@Html.DisplayNameFor(x => x.Gender)</label>
+                <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control"></select>
+              </div>
+            </div>
+
+            <hr />
+            <h6>Endereço de @Model.Name</h6>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label asp-for="Address.StreetName" class="form-label pt-2">@Html.DisplayNameFor(x => x.Address.StreetName)</label>
+                <input asp-for="Address.StreetName" class="form-control" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label asp-for="Address.City" class="form-label pt-2">@Html.DisplayNameFor(x => x.Address.City)</label>
+                <input asp-for="Address.City" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label asp-for="Address.State" class="form-label pt-2">@Html.DisplayNameFor(x => x.Address.State)</label>
+                <input asp-for="Address.State" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label asp-for="Address.Country" class="form-label pt-2">@Html.DisplayNameFor(x => x.Address.Country)</label>
+                <input asp-for="Address.Country" class="form-control" />
+              </div>
+            </div>
+          </div>
+        <div class="modal-footer mt-2">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-success">Concluir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
