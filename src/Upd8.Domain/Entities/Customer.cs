@@ -34,6 +34,11 @@ public sealed class Customer : BaseEntity
         Gender = (gender != this.Gender) ? this.Gender : gender;
         Address = address ?? this.Address;
 
-        // TODO: Disparar um evento para edição de usuário
+        // TODO: Disparar um evento para edição de clientes
+    }
+
+    public void Delete()
+    {
+        // TODO: Disparar um evento para deleção de clientes
     }
 }

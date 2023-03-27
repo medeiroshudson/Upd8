@@ -60,4 +60,13 @@ public class CustomerController : ControllerBase
 
         return AcceptedAtAction(nameof(Update), result);
     }
+
+    [HttpDelete("{CustomerId}")]
+    public async Task<IActionResult> Delete([FromRoute] Guid customerId)
+    {
+        var command = new DeleteCustomerCommand(customerId);
+        await _mediator.Send(command);
+
+        return AcceptedAtAction(nameof(Delete));
+    }
 }
