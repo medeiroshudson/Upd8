@@ -25,7 +25,7 @@ public class CustomerController : ControllerBase
         return Ok(customers);
     }
 
-    [HttpGet("{CustomerId}")]
+    [HttpGet("{customerId}")]
     public async Task<IActionResult> FindById(Guid customerId)
     {
         var query = new GetCustomerByIdQuery(customerId);
@@ -46,7 +46,7 @@ public class CustomerController : ControllerBase
         return CreatedAtAction(nameof(Create), result);
     }
 
-    [HttpPut("{CustomerId}")]
+    [HttpPut("{customerId}")]
     public async Task<IActionResult> Update([FromRoute] Guid customerId, [FromBody] UpdateCustomerCommand request)
     {
         if (customerId != request.Id)
@@ -61,7 +61,7 @@ public class CustomerController : ControllerBase
         return AcceptedAtAction(nameof(Update), result);
     }
 
-    [HttpDelete("{CustomerId}")]
+    [HttpDelete("{customerId}")]
     public async Task<IActionResult> Delete([FromRoute] Guid customerId)
     {
         var command = new DeleteCustomerCommand(customerId);

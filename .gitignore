@@ -470,3 +470,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# container data
+.containers
+
+# vscode user files
+.vscode

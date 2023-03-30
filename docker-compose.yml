@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pa55w0rd123"
+      TZ: "America/Sao_Paulo"
+    volumes:
+        - ./.containers/database:/var/opt/mssql/data
+    ports:
+      - "1433:1433"
+    networks:
+      - intranet
+
+  mssql-tools:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - mssql
+    volumes:
+      - ./InitDatabase.sql:/tmp/InitDatabase.sql
+    command: /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P Pa55w0rd123 -d master -i /tmp/InitDatabase.sql
+    networks:
+      - intranet
+
+  api:
+    build:
+      context: ./
+      dockerfile: src/Upd8.Api/Dockerfile
+    depends_on:
+      - mssql
+    ports:
+      - "8000:80"
+    networks:
+      - intranet
+
+  web:
+    build:
+      context: ./
+      dockerfile: src/Upd8.Web/Dockerfile
+    depends_on:
+      - api
+    ports:
+      - "8001:80"
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    driver: bridge

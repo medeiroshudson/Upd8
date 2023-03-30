@@ -1,9 +1,15 @@
 using Upd8.Web.Models;
 
-namespace Upd8.Web.Repositories;
+namespace Upd8.Web.Repositories.Customer;
 
 public class CustomerRepository : ICustomerRepository
 {
+    private readonly HttpClient _httpClient;
+    public CustomerRepository(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
     public List<CustomerViewModel> _data = new() {
         new CustomerViewModel() { Id = Guid.Parse("78bbec27-7664-4c29-8bb9-ad6ed7558bb3"), Name = "Robson", Document = "1234", BirthDate = DateTime.Now, Gender = Gender.Male, Address = new Address { StreetName = "Rua 1" } },
         new CustomerViewModel() { Id = Guid.Parse("a3682ab6-c903-4520-8600-e84e07d6919c"), Name = "Ailton", Document = "5678", BirthDate = DateTime.Now, Gender = Gender.Unknown }

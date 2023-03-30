@@ -1,11 +1,16 @@
-using Upd8.Web.Repositories;
+using Upd8.Web.Repositories.Customer;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+builder.Services.AddHttpClient<ICustomerRepository, CustomerRepository>(client =>
+{
+    client.BaseAddress = new Uri(configuration.GetConnectionString("") ?? "");
+});
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
 using Upd8.Web.Models;
 
-namespace Upd8.Web.Repositories;
+namespace Upd8.Web.Repositories.Customer;
 
 public interface ICustomerRepository
 {

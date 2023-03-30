@@ -1,6 +1,6 @@
 using Upd8.Web.Models;
-using Upd8.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Upd8.Web.Repositories.Customer;
 
 namespace Upd8.Web.Controllers;
 

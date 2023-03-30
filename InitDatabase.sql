@@ -1,17 +1,19 @@
 USE master;
-GO IF NOT EXISTS(
-        SELECT *
-        FROM sys.databases
-        WHERE name = 'Upd8'
-    ) BEGIN CREATE DATABASE Upd8;
+GO
+
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'Upd8')
+BEGIN 
+	CREATE DATABASE Upd8;
 END
-GO USE Upd8;
-GO IF NOT EXISTS(
-        SELECT *
-        FROM sysobjects
-        WHERE name = 'Customer'
-            and xtype = 'U'
-    ) BEGIN CREATE TABLE Customer (
+
+GO
+
+USE Upd8;
+GO
+
+IF NOT EXISTS(SELECT * FROM sysobjects WHERE name='Customer' and xtype='U')
+BEGIN
+    CREATE TABLE Customer (
         [Id] UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
         [Name] NVARCHAR(100),
         [Document] NVARCHAR(14),
