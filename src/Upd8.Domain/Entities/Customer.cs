@@ -31,7 +31,7 @@ public sealed class Customer : BaseEntity
         Name = string.IsNullOrEmpty(name) ? this.Name : name;
         Document = string.IsNullOrEmpty(document) ? this.Document : document;
         BirthDate = birthDate ?? this.BirthDate;
-        Gender = (gender != this.Gender) ? this.Gender : gender;
+        Gender = (gender == this.Gender) ? this.Gender : gender;
         Address = address ?? this.Address;
 
         // TODO: Disparar um evento para edição de clientes

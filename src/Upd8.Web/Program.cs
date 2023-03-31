@@ -10,11 +10,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddBackendClient(configuration);
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
-// builder.Services.AddHttpClient<ICustomerRepository, CustomerRepository>(client =>
-// {
-//     client.BaseAddress = new Uri(configuration.GetConnectionString("Backend") ?? "");
-// });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
