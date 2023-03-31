@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Upd8.Web.Models;
+
+[Display(Name = "Endereço")]
 public class Address
 {
 

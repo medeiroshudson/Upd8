@@ -14,5 +14,39 @@
 
     @if (Model.Id.ToString() is not null) {
         <p class="lead">@Model.Name</p>
+
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="fw-bold">@Html.DisplayNameFor(x => x.Name):</div>
+                <div class="ms-2 me-auto">
+                    @Model.Name
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="fw-bold">@Html.DisplayNameFor(x => x.Document):</div>
+                <div class="ms-2 me-auto">
+                    @Model.Document
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="fw-bold">@Html.DisplayNameFor(x => x.BirthDate):</div>
+                <div class="ms-2 me-auto">
+                    @Html.DisplayFor(model => model.BirthDate)
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="fw-bold">@Html.DisplayNameFor(x => x.Gender):</div>
+                <div class="ms-2 me-auto">
+                    @Model.Gender.GetDisplayName()
+                </div>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="fw-bold">@Html.DisplayNameFor(x => x.Address):</div>
+                <div class="ms-2 me-auto">
+                    @Model.Address!.StreetName, @Model.Address!.City, @Model.Address!.State, @Model.Address!.Country 
+                </div>  
+            </li>
+        </ul>
     }
 </div>
