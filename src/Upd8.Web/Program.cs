@@ -1,4 +1,5 @@
-using Upd8.Web.Repositories.Customer;
+using Upd8.Web.Repositories.Backend;
+using Upd8.Web.Repositories.Backend.Customer;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -6,11 +7,13 @@ var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddBackendClient(configuration);
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
-builder.Services.AddHttpClient<ICustomerRepository, CustomerRepository>(client =>
-{
-    client.BaseAddress = new Uri(configuration.GetConnectionString("") ?? "");
-});
+
+// builder.Services.AddHttpClient<ICustomerRepository, CustomerRepository>(client =>
+// {
+//     client.BaseAddress = new Uri(configuration.GetConnectionString("Backend") ?? "");
+// });
 
 var app = builder.Build();
 

@@ -8,12 +8,30 @@
         $(document).ready(function() {
             $('#tblCustomers').DataTable();
 
+            $(".btnCreateCustomerModal").click(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "/Customer/CreatePartialView",
+                    success: function(response) {
+                        $("#renderModalArea").html(response);
+
+                        var modalId = $("#renderModalArea").children().attr('id')
+                        var modal = new bootstrap.Modal(document.getElementById(modalId))
+
+                        modal.toggle();
+                    },
+                    error: function(error) {
+                        console.error(error)
+                    }
+                });
+            })
+
             $(".btnEditCustomerModal").click(function() {
                 const customerId = $(this).data('id');
 
                 $.ajax({
                     type: "POST",
-                    url: "/Customer/Edit",
+                    url: "/Customer/EditPartialView",
                     data: { "customerId": customerId },
                     success: function(response) {
                         $("#renderModalArea").html(response);
@@ -58,6 +76,10 @@
 
     <h1 class="display-4 pb-5">Gerenciamento de Clientes</h1>
 
+    <button type="button" class="btn btn-success btnCreateCustomerModal">
+        <i class="bi bi-person-fill-add"></i>
+    </button>
+
     @if(Model.Count > 0) {
         <table id="tblCustomers" class="table table-striped">
             <thead>
@@ -80,7 +102,7 @@
                         <td scope="row">@Html.DisplayFor(model => customer.BirthDate)</td>
                         <td scope="row">@customer.Address?.State</td>
                         <td scope="row">@customer.Address?.City</td>
-                        <td scope="row">@customer.Gender</td>
+                        <td scope="row">@customer.Gender.GetDisplayName()</td>
                         <td scope="row">
                             <a class="btn btn-secondary" asp-action="Details" asp-route-id="@customer.Id">
                                 <i class="bi bi-eye"></i>

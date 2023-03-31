@@ -20,5 +20,5 @@ public class CustomerViewModel
     public Address? Address { get; set; }
 
     [Display(Name = "Sexo")]
-    public Gender Gender { get; set; }
+    public Gender Gender { get; set; } = Gender.Unknown;
 }

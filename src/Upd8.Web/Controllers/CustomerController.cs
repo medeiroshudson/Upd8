@@ -1,6 +1,6 @@
 using Upd8.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Upd8.Web.Repositories.Customer;
+using Upd8.Web.Repositories.Backend.Customer;
 
 namespace Upd8.Web.Controllers;
 
@@ -15,44 +15,53 @@ public class CustomerController : Controller
     }
 
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var customers = _customerRepository.GetAll();
+        var customers = await _customerRepository.GetAllAsync();
         return View(customers);
     }
 
-    public IActionResult Details(Guid id)
+    public async Task<IActionResult> Details(Guid id)
     {
-        var customer = _customerRepository.GetById(id);
+        var customer = await _customerRepository.GetByIdAsync(id);
         return View(customer);
     }
 
     [HttpPost]
-    public IActionResult Edit(Guid customerId)
+    public async Task<IActionResult> Create(CustomerViewModel model)
     {
-        var customer = _customerRepository.GetById(customerId);
-
-        return PartialView("_EditCustomerPartialView", customer);
+        await _customerRepository.CreateAsync(model);
+        return RedirectToAction("Index", "Customer");
     }
 
     [HttpPost]
-    public IActionResult Update(CustomerViewModel model)
+    public async Task<IActionResult> Update(CustomerViewModel model)
     {
-        _customerRepository.Update(model);
-
-        Console.WriteLine(model.Id);
-        Console.WriteLine(model.Name);
-        Console.WriteLine(model.Document);
-        Console.WriteLine(model.BirthDate);
-        Console.WriteLine(model.Address?.StreetName);
-
+        await _customerRepository.UpdateAsync(model);
         return RedirectToAction("Index", "Customer");
     }
 
     [HttpDelete]
-    public IActionResult Delete(Guid customerId)
+    public async Task<IActionResult> Delete(Guid customerId)
     {
-        _customerRepository.Delete(customerId);
+        await _customerRepository.DeleteAsync(customerId);
         return RedirectToAction("Index", "Customer");
     }
+
+    #region Partials
+
+    [HttpPost]
+    public IActionResult CreatePartialView()
+    {
+        return PartialView("_CreateCustomerPartialView", new CustomerViewModel());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditPartialView(Guid customerId)
+    {
+        var customer = await _customerRepository.GetByIdAsync(customerId);
+        return PartialView("_EditCustomerPartialView", customer);
+    }
+
+    #endregion
 }

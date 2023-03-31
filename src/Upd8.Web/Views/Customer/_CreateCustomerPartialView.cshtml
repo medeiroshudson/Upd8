@@ -1,16 +1,16 @@
 @model CustomerViewModel
 
-<div class="modal fade" id="editCustomerModal" tabindex="-1" aria-labelledby="editCustomerModalLabel" aria-hidden="true">
+<div class="modal fade" id="createCustomerModal" tabindex="-1" aria-labelledby="createCustomerModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-1"></div>
-        <div class="col-10 text-center"><h5 class="modal-title">Detalhes de @Model.Name</h5></div>
+        <div class="col-10 text-center"><h5 class="modal-title">Detalhes</h5></div>
         <div class="col-1">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
       </div>
-      <form asp-action="Update" method="post">
+      <form asp-action="Create" method="post">
         <div class="modal-body">
           <input asp-for="Id" hidden />
 
